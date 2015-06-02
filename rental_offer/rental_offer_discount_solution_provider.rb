@@ -8,9 +8,18 @@ class RentalOfferDiscountSolutionProvider < Listener
   def handle_packet(exchange, packet)
     return if packet.has_key?('solution')
 
+    if packet['membership'] == 'platinum'
+      value = rand(100) * 10
+      description = 'Platinum members get a massive discount'
+    else
+      value = rand(100)
+      description = 'Discounted car rental'
+    end
+
     packet['solution'] = {
-      'description' => 'discount',
-      'value' => rand(100)
+      'description' => description,
+      'type' => 'discount',
+      'value' => value,
     }
 
     exchange.publish(packet.to_json)
