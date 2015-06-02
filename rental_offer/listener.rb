@@ -19,6 +19,7 @@ class Listener
       packet = JSON.parse(body)
       packet['visit_count'] ||= 0
       packet['visit_count'] += 1
+      packet['team'] = 'homer'
       handle_packet(exchange, packet) unless packet['visit_count'] > 9
     end
   end
