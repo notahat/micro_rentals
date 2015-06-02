@@ -18,5 +18,5 @@ class RentalOfferUpgradeSolutionProvider < Listener
 
 end
 
-RentalOfferFooSolutionProvider.new(ARGV.shift, ARGV.shift).start
+RentalOfferUpgradeSolutionProvider.new(ARGV.shift, ARGV.shift).start
 

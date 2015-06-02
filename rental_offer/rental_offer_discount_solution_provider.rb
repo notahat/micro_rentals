@@ -18,6 +18,6 @@ class RentalOfferDiscountSolutionProvider < Listener
 
 end
 
-RentalOfferBarSolutionProvider.new(ARGV.shift, ARGV.shift).start
+RentalOfferDiscountSolutionProvider.new(ARGV.shift, ARGV.shift).start
 
 
