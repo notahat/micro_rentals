@@ -6,7 +6,7 @@ require_relative 'listener'
 class RentalOfferSegmentTypeProvider < Listener
 
   def handle_packet(exchange, packet)
-    return if packet.has_key?('member_id') &&
+    return unless packet.has_key?('member_id') &&
       !packet.has_key?('segment_type') &&
       !packet.has_key?('solution')
 
