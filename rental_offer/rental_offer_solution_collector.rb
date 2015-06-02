@@ -11,11 +11,11 @@ require_relative 'listener'
 # Streams rental-offer-related requests to the console
 class RentalOfferSolutionCollector < Listener
   def handle_packet(exchange, packet)
-    return if packet['solution'].empty?
+    return unless packet.has_key?('solution')
 
     current_best_solution = db[packet['correlation_id']]
 
-    if current_best_solution.nil? || packet['value'] > current_best_solution[:value]
+    if current_best_solution.nil? || packet['solution']['value'] > current_best_solution[:value]
       db[packet['correlation_id']] = { description: packet['solution']['description'], value: packet['solution']['value'] }
     end
 
