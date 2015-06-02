@@ -6,16 +6,14 @@ require_relative 'listener'
 class RentalOfferFooSolutionProvider < Listener
 
   def handle_packet(exchange, packet)
-    return unless packet['json_class'] == 'RentalOfferNeedPacket'
+    return if packet.has_key?('solution')
 
-    response = {
-      'json_class' => 'RentalOfferSolutionPacket',
-      'need' => 'car_rental_offer',
-      'correlation_id' => packet['correlation_id'],
+    packet['solution'] = {
       'description' => 'foo',
       'value' => rand(100)
     }
-    exchange.publish(response.to_json)
+
+    exchange.publish(packet.to_json)
   end
 
 end

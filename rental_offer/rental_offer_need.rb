@@ -6,7 +6,6 @@
 # To run monitor at prompt:
 #   ruby rental_offer_need.rb 192.168.0.52 homer
 
-require_relative 'rental_offer_need_packet'
 require_relative 'connection'
 require 'securerandom'
 require 'json'
