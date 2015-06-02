@@ -1,19 +1,20 @@
 #!/usr/bin/env ruby
 # encoding: utf-8
 
+require 'json'
 require_relative 'listener'
 
 class RentalOfferSolutionCollector < Listener
   def handle_packet(_, packet)
     return unless packet.has_key?('solution')
+    db_key = packet['correlation_id']
 
-    current_best_solution = db[packet['correlation_id']]
+    db[db_key] ||= []
+    db[db_key] << { type: packet['solution']['type'], description: packet['solution']['description'], value: packet['solution']['value'] }
 
-    if current_best_solution.nil? || packet['solution']['value'] > current_best_solution[:value]
-      db[packet['correlation_id']] = { description: packet['solution']['description'], value: packet['solution']['value'] }
-    end
+    best_offer = db[db_key].sort_by { |offer| offer[:value] }.last
 
-    p [ packet['correlation_id'], db[packet['correlation_id']] ]
+    puts JSON.generate([ db_key, best_offer ])
   end
 
   def db
