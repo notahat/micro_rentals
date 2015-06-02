@@ -13,7 +13,7 @@ class RentalOfferUpgradeSolutionProvider < Listener
       description = 'Road Warriors get an Interceptor'
     else
       value = rand(100)
-      description = 'Upgrade to better car?'
+      description = 'Get a car upgrade'
     end
 
     packet['solution'] = {
