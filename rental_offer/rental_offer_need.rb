@@ -1,16 +1,10 @@
 #!/usr/bin/env ruby
 # encoding: utf-8
 
-# Docker run command:
-#   docker run --name='need' -it -v /c/Users/fred/src/microservice_workshop/ruby:/workshop -w /workshop/rental_offer fredgeorge/ruby_microservice bash
-# To run monitor at prompt:
-#   ruby rental_offer_need.rb 192.168.0.52 homer
-
 require_relative 'connection'
 require 'securerandom'
 require 'json'
 
-# Expresses a need for rental car offers
 class RentalOfferNeed
 
   def initialize(host, bus_name)
