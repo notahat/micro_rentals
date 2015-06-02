@@ -3,13 +3,13 @@
 
 require_relative 'listener'
 
-class RentalOfferFooSolutionProvider < Listener
+class RentalOfferUpgradeSolutionProvider < Listener
 
   def handle_packet(exchange, packet)
     return if packet.has_key?('solution')
 
     packet['solution'] = {
-      'description' => 'foo',
+      'description' => 'upgrade',
       'value' => rand(100)
     }
 
