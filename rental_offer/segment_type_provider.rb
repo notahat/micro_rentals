@@ -3,7 +3,7 @@
 
 require_relative 'listener'
 
-class RentalOfferSegmentTypeProvider < Listener
+class SegmentTypeProvider < Listener
 
   def handle_packet(exchange, packet)
     return if !packet.has_key?('member_id') ||
@@ -17,4 +17,4 @@ class RentalOfferSegmentTypeProvider < Listener
 
 end
 
-RentalOfferSegmentTypeProvider.new(ARGV.shift, ARGV.shift).start
+SegmentTypeProvider.new(ARGV.shift, ARGV.shift).start

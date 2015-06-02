@@ -4,7 +4,7 @@
 require 'json'
 require_relative 'listener'
 
-class RentalOfferSolutionCollector < Listener
+class SolutionCollector < Listener
   def handle_packet(_, packet)
     return unless packet.has_key?('solution')
     db_key = packet['correlation_id']
@@ -22,4 +22,4 @@ class RentalOfferSolutionCollector < Listener
   end
 end
 
-RentalOfferSolutionCollector.new(ARGV.shift, ARGV.shift).start
+SolutionCollector.new(ARGV.shift, ARGV.shift).start

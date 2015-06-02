@@ -5,7 +5,7 @@ require_relative 'connection'
 require 'securerandom'
 require 'json'
 
-class RentalOfferNeed
+class Need
 
   def initialize(host, bus_name)
     @host = host
@@ -38,4 +38,4 @@ class RentalOfferNeed
 
 end
 
-RentalOfferNeed.new(ARGV.shift, ARGV.shift).start
+Need.new(ARGV.shift, ARGV.shift).start

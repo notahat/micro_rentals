@@ -3,22 +3,22 @@
 
 require_relative 'listener'
 
-class RentalOfferDiscountSolutionProvider < Listener
+class UpgradeSolutionProvider < Listener
 
   def handle_packet(exchange, packet)
     return if packet.has_key?('solution')
 
-    if packet['membership'] == 'platinum'
+    if packet['segment_type'] == 'road_warrior'
       value = rand(100) * 10
-      description = 'Platinum members get a massive discount'
+      description = 'Road Warriors get an Interceptor'
     else
       value = rand(100)
-      description = 'Discounted car rental'
+      description = 'Get a car upgrade'
     end
 
     packet['solution'] = {
       'description' => description,
-      'type' => 'discount',
+      'type' => 'upgrade',
       'value' => value,
     }
 
@@ -27,6 +27,5 @@ class RentalOfferDiscountSolutionProvider < Listener
 
 end
 
-RentalOfferDiscountSolutionProvider.new(ARGV.shift, ARGV.shift).start
-
+UpgradeSolutionProvider.new(ARGV.shift, ARGV.shift).start
 
