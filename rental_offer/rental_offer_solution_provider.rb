@@ -29,15 +29,16 @@ private
   end
 
   def respond_to_need(exchange, packet)
-    response = {
-      'json_class' => 'RentalOfferSolutionsPacket',
-      'need' => 'car_rental_offer',
-      'correlation_id' => packet['correlation_id'],
-      'solutions' => [
-        { 'name' => 'foo', 'value' => 42 }
-      ]
-    }
-    exchange.publish(response.to_json)
+    3.times do
+      response = {
+        'json_class' => 'RentalOfferSolutionPacket',
+        'need' => 'car_rental_offer',
+        'correlation_id' => packet['correlation_id'],
+        'description' => 'foo',
+        'value' => rand(100)
+      }
+      exchange.publish(response.to_json)
+    end
   end
 
 end
