@@ -38,7 +38,7 @@ class RentalOfferNeed
 
       exchange.publish packet.to_json
       puts " [x] Published a rental offer need on the #{@bus_name} bus"
-      sleep 5
+      sleep 3
     end
   end
 
