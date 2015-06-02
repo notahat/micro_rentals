@@ -23,7 +23,7 @@ class RentalOfferSolutionCollector < Listener
   end
 
   def db
-    @db ||= Hash.new()
+    @db ||= Hash.new
   end
 end
 
